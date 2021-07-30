@@ -2,7 +2,8 @@ import supertest from "supertest";
 import app, { init } from "../../src/app";
 import { getConnection } from "typeorm";
 import { clearDatabase } from "../utils/database";
-import Subject from "../../src/entities/subjects"
+import Professor from "../../src/entities/professors";
+import { getSubjectParam } from "../factories/subjectFactory";
 
 beforeAll(async () => {
   await init();
@@ -19,13 +20,16 @@ afterAll(async () => {
 
 const agent = supertest(app)
 
-describe("GET /subjects" ,() => {
+describe("GET /professors" ,() => {
   it('returns status 200 for valid params', async () => {
-    const response = await agent.get("/subjects")
+    const id = await getSubjectParam()
+    const response = await agent.get(`/professors/${id}`)
     expect(response.status).toEqual(200);
   })
-  it('returns an array of subjects', async()=> {
-    const response = await agent.get("/subjects")
+  
+  it('returns an array of professors', async()=> {
+    const id = await getSubjectParam()
+    const response = await agent.get(`/professors/${id}`)
     expect(response.body).toEqual(expect.arrayContaining([{id: expect.any(Number), name: expect.any(String)}]))
   })
 })

@@ -2,10 +2,7 @@ import supertest from "supertest";
 import app, { init } from "../../src/app";
 import { getConnection } from "typeorm";
 import { clearDatabase } from "../utils/database";
-import { createSubject } from "../factories/subjectFactory";
 import { bodyTest } from "../factories/bodyFactory";
-import { createProfessor, createRelation } from "../factories/professorFactory";
-
 
 beforeAll(async () => {
   await init();
@@ -23,11 +20,6 @@ afterAll(async () => {
 const agent = supertest(app)
 
 describe("POST /new-test" ,() => {
-  beforeEach(async() => {
-    const subjectId: number = await createSubject()
-    const professorId: number = await createProfessor()
-    await createRelation(subjectId, professorId)
-  })
 
   it('returns status 201 for valid params', async () => {
     const response = await agent.post("/new-test").send(bodyTest);

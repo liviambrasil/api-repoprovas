@@ -1,5 +1,7 @@
+import faker from 'faker'
+
 const bodyTest = {
-    name: "2018/1",
+    name: faker.name.title(),
     category: "P1",
     subject: "Psicologia e estudos da deficiência",
     professor: "Mácia Moraes",

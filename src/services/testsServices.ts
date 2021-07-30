@@ -6,9 +6,9 @@ import Test from "../entities/tests";
 import reqTestType from "../interfaces/testType";
 
 export async function addTest ({name, category, subject, professor}: reqTestType) {
-    const categoryId:number = (await getRepository(Category).findOne({name: category})).id
-    const subjectId:number = (await getRepository(Subject).findOne({name: subject})).id
-    const professorId:number = (await getRepository(Professor).findOne({name: professor})).id
+    const categoryId:Category = await getRepository(Category).findOne({name: category})
+    const subjectId:Subject = await getRepository(Subject).findOne({name: subject})
+    const professorId:Professor = await getRepository(Professor).findOne({name: professor})
 
-    await getRepository(Test).insert({name, categoryId, subjectId, professorId})
+    await getRepository(Test).insert({name, categoryId: categoryId.id, subjectId: subjectId.id, professorId: professorId.id})
 }
