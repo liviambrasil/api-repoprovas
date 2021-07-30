@@ -6,9 +6,9 @@ import subjectsProfessors from "../../src/entities/subjectsProfessors";
 
 async function clearDatabase () {
     await getRepository(Test).delete({})
+    await getRepository(subjectsProfessors).delete({})
     await getRepository(Subject).delete({})
     await getRepository(Professor).delete({})
-    await getRepository(subjectsProfessors).delete({})
 }
 
 export { clearDatabase }

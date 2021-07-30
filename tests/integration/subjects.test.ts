@@ -28,7 +28,6 @@ describe("GET /subjects" ,() => {
   })
   it('returns an array of subjects', async()=> {
     const response = await agent.get("/subjects")
-    expect(response.body)
-    .toEqual(expect.arrayContaining([Subject]))
+    expect(response.body).toEqual(expect.arrayContaining([Subject]))
   })
 })

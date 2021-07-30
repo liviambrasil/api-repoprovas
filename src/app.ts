@@ -5,6 +5,7 @@ import "reflect-metadata";
 import { connectDatabase } from "./database";
 import { newTest } from "./controllers/testsController";
 import { getSubjects } from "./controllers/subjectsController";
+import { getProfessors } from "./controllers/professorsController";
 
 
 const app = express();
@@ -18,5 +19,6 @@ export async function init() {
 
 app.post("/new-test", newTest);
 app.get("/subjects", getSubjects);
+app.get("/professors/:subject", getProfessors);
 
 export default app;
