@@ -3,7 +3,7 @@ import express from "express";
 import cors from "cors";
 import "reflect-metadata";
 import { connectDatabase } from "./database";
-import { teste } from "./controllers/controller";
+import { newTest } from "./controllers/testsController";
 
 
 const app = express();
@@ -15,6 +15,6 @@ export async function init() {
     await connectDatabase();
 }
 
-app.get("/teste", teste);
+app.post("/new-test", newTest);
 
 export default app;
