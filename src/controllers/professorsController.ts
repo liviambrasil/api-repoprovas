@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import joi from "joi"
-import { getProfessorsBySubjects } from "../services/professorsService"
+import { getProfessorsBySubjects, getProfessorsList } from "../services/professorsService"
 
 async function getProfessors(req:Request, res:Response) {
     const schema = joi.object({
@@ -15,4 +15,10 @@ async function getProfessors(req:Request, res:Response) {
     res.send(professors)
 }
 
-export { getProfessors }
+async function getAllProfessors(req:Request, res: Response) {
+    const professors = await getProfessorsList()
+
+    res.send(professors)
+}
+
+export { getProfessors, getAllProfessors }

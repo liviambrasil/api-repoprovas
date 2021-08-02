@@ -3,4 +3,6 @@ export default interface reqTestType {
     category: string;
     subject: string;
     professor: string;
+    semester: string;
+    link: string
 }

@@ -5,6 +5,8 @@ const testSchema = joi.object({
     category: joi.string().required().valid("P1", "P2", "P3", "2ch", "Outras"),
     subject: joi.string().required(),
     professor: joi.string().required(),
+    link: joi.string().required(),
+    semester: joi.string().required()
 })
 
 export { testSchema }

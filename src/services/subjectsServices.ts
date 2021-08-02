@@ -1,8 +1,8 @@
 import { getRepository } from "typeorm";
-import Subjects from "../entities/subjects";
+import Subject from "../entities/subjects";
 
-async function getAllSubjects(): Promise<Array<Subjects>> {
-    return await getRepository(Subjects).find()
+async function getAllSubjects(): Promise<Array<Subject>> {
+    return await getRepository(Subject).find()
 }
 
 export { getAllSubjects }
