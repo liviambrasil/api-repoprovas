@@ -10,6 +10,9 @@ export default class Subject {
   
   @Column()
   name: string;
+
+  @Column()
+  semesterId: number;
   
   @ManyToMany(()=> Professor, professor => professor.subject)
   @JoinTable({name:'subject_professor'})
@@ -18,6 +21,6 @@ export default class Subject {
   @OneToMany(() => Test, test => test.subjectId)
   test:Test[];
 
-  // @ManyToOne(() => Semester, semester => semester.name)
-  // semesters: Semester;
+  @ManyToOne(() => Semester, semester => semester.name)
+  semester: Semester;
 }

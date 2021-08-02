@@ -23,9 +23,6 @@ export default class Test {
   @Column()
   professorId: number;
 
-  @Column()
-  semesterId: number;
-
   @ManyToOne(() => Professor, professor => professor.id)
   professor: Professor;
 

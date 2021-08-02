@@ -3,7 +3,7 @@ import express from "express";
 import cors from "cors";
 import "reflect-metadata";
 import { connectDatabase } from "./database";
-import { getAllTests, getCategories, newTest } from "./controllers/testsController";
+import { getAllTests, getCategories, getSemesters, newTest } from "./controllers/testsController";
 import { getSubjects } from "./controllers/subjectsController";
 import { getAllProfessors, getProfessors } from "./controllers/professorsController";
 
@@ -23,5 +23,6 @@ app.get("/professors/:subject", getProfessors);
 app.get("/professors", getAllProfessors);
 app.get("/tests", getAllTests);
 app.get("/categories", getCategories);
+app.get("/semesters", getSemesters);
 
 export default app;

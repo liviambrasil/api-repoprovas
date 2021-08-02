@@ -6,7 +6,6 @@ const testSchema = joi.object({
     subject: joi.string().required(),
     professor: joi.string().required(),
     link: joi.string().required(),
-    semester: joi.string().required()
 })
 
 export { testSchema }

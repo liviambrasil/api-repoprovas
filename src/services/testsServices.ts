@@ -6,11 +6,10 @@ import Subject from "../entities/subjects";
 import Test from "../entities/tests";
 import reqTestType from "../interfaces/testType";
 
-async function addTest ({name, category, subject, professor, semester, link}: reqTestType) {
+async function addTest ({name, category, subject, professor, link}: reqTestType) {
     const categoryId:Category = await getRepository(Category).findOne({name: category})
     const subjectId:Subject = await getRepository(Subject).findOne({name: subject})
     const professorId:Professor = await getRepository(Professor).findOne({name: professor})
-    const semesterId: Semester = await getRepository(Semester).findOne({name: semester})
 
     await getRepository(Test).insert({
         name,
@@ -18,7 +17,6 @@ async function addTest ({name, category, subject, professor, semester, link}: re
         categoryId: categoryId.id, 
         subjectId: subjectId.id, 
         professorId: professorId.id,
-        semesterId: semesterId.id
     })
 }
 
