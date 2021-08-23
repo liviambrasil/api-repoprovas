@@ -2,7 +2,6 @@ import supertest from "supertest";
 import app, { init } from "../../src/app";
 import { getConnection } from "typeorm";
 import { clearDatabase } from "../utils/database";
-import Subject from "../../src/entities/subjects"
 
 beforeAll(async () => {
   await init();

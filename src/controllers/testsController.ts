@@ -46,11 +46,11 @@ async function getCategories (req: Request, res: Response) {
 }
 
 async function getTestsByCategory (req: Request, res: Response) {
-    const { professorId, categoryId } = (req.params)
-
+    const professorId: number = Number(req.params.professorId)
+    const categoryId: number = Number(req.params.categoryId)
 
     try{
-        const result = await getRepository(Test).find({categoryId: Number(categoryId), professorId: Number(professorId)})
+        const result = await getRepository(Test).find({categoryId, professorId})
         res.send(result)
     }
     catch(e) {

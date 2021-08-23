@@ -1,7 +1,6 @@
 import { getRepository } from "typeorm";
 import Category from "../entities/categories";
 import Professor from "../entities/professors";
-import Semester from "../entities/semesters";
 import Subject from "../entities/subjects";
 import Test from "../entities/tests";
 import reqTestType from "../interfaces/testType";

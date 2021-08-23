@@ -1,8 +1,12 @@
 import supertest from "supertest";
 import app, { init } from "../../src/app";
-import { getConnection } from "typeorm";
+import { getConnection, getRepository } from "typeorm";
 import { clearDatabase } from "../utils/database";
 import { bodyTest } from "../factories/bodyFactory";
+import Subject from "../../src/entities/subjects"
+import Professor from "../../src/entities/professors"
+import Category from "../../src/entities/categories"
+import Test from "../../src/entities/tests"
 
 beforeAll(async () => {
   await init();
@@ -64,5 +68,34 @@ describe("POST /new-test" ,() => {
   it('returns status 400 for empty professor', async() => {
     const response = await agent.post("/new-test").send({...bodyTest, professor: ""});
     expect(response.status).toEqual(400);
+  })
+})
+
+describe("GET /tests" ,() => {
+
+  beforeEach(async() => {
+    const {name, link} = bodyTest
+    const body = {name, link, categoryId: 1, subjectId: 1, professorId: 1}
+    await getRepository(Test).insert(body)
+  })
+
+  it('returns status 200 for valid params', async() => {
+    const response = await agent.get(`/professors`)
+    expect(response.status).toEqual(200);
+  })
+  
+  it('returns an array of professors', async()=> {
+    const response = await agent.get(`/tests`)
+    expect(response.body).toEqual(expect.objectContaining({
+      id: expect.any(Number), 
+      name: expect.any(String),
+      link: expect.any(String),
+      categoryId: expect.any(Number),
+      subjectId: expect.any(Number),
+      professorId: expect.any(Number),
+      subject: expect.any(Subject),
+      professor: expect.any(Professor),
+      category: expect.any(Category)
+    }))
   })
 })

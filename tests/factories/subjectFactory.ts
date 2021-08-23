@@ -1,4 +1,4 @@
-import { getRepository, ObjectLiteral } from "typeorm";
+import { getRepository } from "typeorm";
 import Subject from "../../src/entities/subjects";
 
 async function getSubjectParam():Promise<string> {

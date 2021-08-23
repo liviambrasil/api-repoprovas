@@ -17,11 +17,11 @@ export async function init() {
     await connectDatabase();
 }
 
-app.post("/new-test", newTest);
-app.get("/subjects", getSubjects);
-app.get("/professors/:subject", getProfessors);
-app.get("/professors", getAllProfessors);
-app.get("/tests", getAllTests);
+app.post("/new-test", newTest); //testada
+app.get("/subjects", getSubjects); //testada
+app.get("/professors/:subject", getProfessors); //testada
+app.get("/professors", getAllProfessors); //testada
+app.get("/tests", getAllTests); 
 app.get("/categories", getCategories);
 app.get("/semesters", getSemesters);
 
