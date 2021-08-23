@@ -3,9 +3,6 @@ import app, { init } from "../../src/app";
 import { getConnection, getRepository } from "typeorm";
 import { clearDatabase } from "../utils/database";
 import { bodyTest } from "../factories/bodyFactory";
-import Subject from "../../src/entities/subjects"
-import Professor from "../../src/entities/professors"
-import Category from "../../src/entities/categories"
 import Test from "../../src/entities/tests"
 
 beforeAll(async () => {
@@ -86,16 +83,28 @@ describe("GET /tests" ,() => {
   
   it('returns an array of professors', async()=> {
     const response = await agent.get(`/tests`)
-    expect(response.body).toEqual(expect.objectContaining({
-      id: expect.any(Number), 
-      name: expect.any(String),
-      link: expect.any(String),
-      categoryId: expect.any(Number),
-      subjectId: expect.any(Number),
-      professorId: expect.any(Number),
-      subject: expect.any(Subject),
-      professor: expect.any(Professor),
-      category: expect.any(Category)
-    }))
+    expect(response.body).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        id: expect.any(Number), 
+        name: expect.any(String),
+        link: expect.any(String),
+        categoryId: expect.any(Number),
+        subjectId: expect.any(Number),
+        professorId: expect.any(Number),
+        subject:expect.objectContaining({
+            id: expect.any(Number),
+            name: expect.any(String),
+            semesterId: expect.any(Number)
+          }),
+        professor:expect.objectContaining({
+            id: expect.any(Number),
+            name: expect.any(String)
+          }),
+        category: expect.objectContaining({
+            id: expect.any(Number),
+            name: expect.any(String)
+        })
+      })
+    ]))
   })
 })
