@@ -63,6 +63,7 @@ npm start
     - 9.5 Set the enviroment variable following the step 5 again, with the following changes:
       - 9.5.1 The file must be called ``.env.test``
       - 9.5.2 The ``DATABASE_URL`` must be in this format: "postgres://user:password@host:port/repoprovas_test"
+    - <b>Important</b>: Tests assume that some tables are pre-populated. Therefore, it is important to use the dump provided to create the test database.
 
 10. In your terminal, go to the root folder and run the tests with:
 ```bash
